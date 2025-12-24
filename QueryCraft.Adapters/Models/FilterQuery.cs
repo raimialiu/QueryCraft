@@ -17,6 +17,7 @@ public class FilterQuery<T>
 // (x.Phone = 2)
 
 //
+/*
 var filter = new FilterCriteria<string>(
         ["Tunde"],
             FilterOperator.EQUALS,
@@ -28,3 +29,4 @@ var filter = new FilterCriteria<string>(
         FilterOperator.EQUALS,
         "LastName"
     );
+    */

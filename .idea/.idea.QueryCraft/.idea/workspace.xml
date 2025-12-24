@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a2add2-a3b2-4eb2-b806-a231d9dbefc4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/QueryCraft.sln" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/DataSourceAdapter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Common/Enums/DataSourceName.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/DataSource.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/EfCore/EfCoreDataSource.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/IDataSource.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/InMemory/InMemoryDataSource.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/Json/JsonDataSource.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Core/lib/QueryCraft.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/BaseDataSourceAdapter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Common/Constants/AdapterNames.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Common/Constants/AdapterNames.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/EfCore/EfCoreDataSourceAdapters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/EfCore/EfCoreDataSourceAdapters.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Extensions/AdapterExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Extensions/AdapterExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/IDataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/IDataSourceAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Json/JsonDataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/Json/JsonDataSourceAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Memory/InMemoryDataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/Memory/InMemoryDataSourceAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Models/DataSource.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterQuery.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,23 +32,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/BaseDataSourceAdapter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Class1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Common/Constants/AdapterNames.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Common/Enums/DataSourceName.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Common/Enums/FilterCondition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Common/Enums/FilterOperator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/EfCore/EfCoreDataSourceAdapters.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/DataSources/EfCore/EfCoreDataSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/DataSources/IDataSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/DataSources/InMemory/InMemoryDataSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/DataSources/Json/JsonDataSource.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Extensions/AdapterExtension.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/IDataSourceAdapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Json/JsonDataSourceAdapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Memory/InMemoryDataSourceAdapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/DataSource.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterColumn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterGroup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterQuery.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/QueryResult.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Configurations/Class1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Core/Class1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Core/lib/QueryCraft.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Fluent/Class1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Formatters/Class1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Parsing/Class1.cs" root0="FORCE_HIGHLIGHTING" />
@@ -41,6 +57,7 @@
     <commands />
     <urls />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 8
 }]]></component>
@@ -66,13 +83,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766576040777</updated>
-      <workItem from="1766576041783" duration="8368000" />
+      <workItem from="1766576041783" duration="14547000" />
     </task>
+    <task id="LOCAL-00001" summary="base projects">
+      <option name="closed" value="true" />
+      <created>1766590485242</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766590485242</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="base projects" />
+    <option name="LAST_COMMIT_MESSAGE" value="base projects" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -11,7 +11,7 @@ public static class AdapterExtension
         var dataAdapter = new EfCoreDataSourceAdapters(new DataSource<T>()
         {
             QueryableSource =  queryable,
-            FriendlyName = AdapterNames.EFCoreDataSource
+            FriendlyName = AdapterNames.EfCoreDataSource
         });
     }
 }
