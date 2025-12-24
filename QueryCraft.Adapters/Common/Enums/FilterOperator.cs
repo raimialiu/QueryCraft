@@ -1,0 +1,37 @@
+namespace QueryCraft.Adapters.Common.Enums;
+
+public enum FilterOperator
+{
+    EQUALS,
+    NotEquals,
+    CONTAINS,
+    NOT_CONTAINS,
+    GREATER_THAN,
+    LESS_THAN,
+    GREATER_THAN_OR_EQUAL_TO,
+    LESS_THAN_OR_EQUAL_TO,
+    IN,
+    NOT_IN,
+    BETWEEN,
+    NOT_BETWEEN,
+    STARTSWITH,
+    ENDWITH,
+    IS_NULL,
+    IS_NOT_NULL,
+    EMPTY,
+    NOT_EMPTY,
+    BEFORE,
+    BEFORE_INCLUSIVE,
+    AFTER,
+    AFTER_INCLUSIVE,
+    TODAY,
+    THIS_WEEK,
+    LAST_WEEK,
+    YESTERDAY,
+    LAST_MONTH,
+    THIS_MONTH,
+    THIS_YEAR,
+    LAST_YEAR,
+    LAST_N_DAYS,
+    ON
+}
