@@ -9,11 +9,11 @@ public abstract class DataSourceAdapter : IDataSourceAdapter
     
     public abstract bool CanHandle<T>();
 
-    public abstract Task<IEnumerable<T>> ApplyFilterAsync<T>(
+    public abstract Task<QueryResult<T>> ApplyFilterAsync<T>(
         FilterGroup<T> queries,
         CancellationToken cancellationToken = default
     );
 
-    public abstract Task<IEnumerable<T>> ApplyFiltersAsync<T>(
+    public abstract Task<QueryResult<T>> ApplyFiltersAsync<T>(
         List<FilterGroup<T>> filterGroups, CancellationToken cancellationToken = default);
 }

@@ -5,23 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a2add2-a3b2-4eb2-b806-a231d9dbefc4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/DataSourceAdapter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Common/Enums/DataSourceName.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/DataSource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/EfCore/EfCoreDataSource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/IDataSource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/InMemory/InMemoryDataSource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/Json/JsonDataSource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Core/lib/QueryCraft.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/BaseDataSourceAdapter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Common/Constants/AdapterNames.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Common/Constants/AdapterNames.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/EfCore/EfCoreDataSourceAdapters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/EfCore/EfCoreDataSourceAdapters.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/PaginatedResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/PaginationQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/QueryMetadata.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/DataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/DataSourceAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/EfCore/EfCoreDataSourceAdapters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/EfCore/EfCoreDataSourceAdapters.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/IDataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/IDataSourceAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/Memory/InMemoryDataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/Memory/InMemoryDataSourceAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/InMemory/InMemoryDataSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/DataSources/InMemory/InMemoryDataSource.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Extensions/AdapterExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Extensions/AdapterExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/IDataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/IDataSourceAdapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Json/JsonDataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/Json/JsonDataSourceAdapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Memory/InMemoryDataSourceAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Adapters/Memory/InMemoryDataSourceAdapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Models/DataSource.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterCriteria.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterCriteria.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterGroup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.Adapters/Models/QueryResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/QueryResult.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +41,8 @@
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterColumn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterGroup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterQuery.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/PaginationQuery.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/QueryMetadata.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/QueryResult.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Configurations/Class1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Core/Class1.cs" root0="FORCE_HIGHLIGHTING" />
@@ -83,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766576040777</updated>
-      <workItem from="1766576041783" duration="14547000" />
+      <workItem from="1766576041783" duration="16290000" />
     </task>
     <task id="LOCAL-00001" summary="base projects">
       <option name="closed" value="true" />
@@ -93,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766590485242</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="setup (wip)">
+      <option name="closed" value="true" />
+      <created>1766599593189</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766599593189</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -101,7 +107,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="base projects" />
-    <option name="LAST_COMMIT_MESSAGE" value="base projects" />
+    <MESSAGE value="setup (wip)" />
+    <option name="LAST_COMMIT_MESSAGE" value="setup (wip)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -2,21 +2,27 @@ using QueryCraft.Adapters.Models;
 
 namespace QueryCraft.Adapters.Adapters;
 
+
 /// <summary>
 /// Defines the contract for data source adapters that provide standardized access
-/// to various types of data sources with filtering and querying capabilities.
+/// to various types of data sources with filtering, querying, and pagination capabilities.
 /// </summary>
 /// <remarks>
 /// <para>
 /// This interface implements the Adapter pattern, allowing different data source types
 /// (databases, JSON files, in-memory collections, etc.) to be accessed through a
 /// consistent API. Each adapter implementation handles the specifics of its data source
-/// while providing uniform filtering and querying operations.
+/// while providing uniform filtering, querying, and pagination operations.
 /// </para>
 /// <para>
 /// The interface supports both single and multiple filter operations with asynchronous
 /// execution, making it suitable for high-performance applications that need to work
 /// with various data sources without tight coupling to specific implementations.
+/// </para>
+/// <para>
+/// All query operations return <see cref="QueryResult{T}"/> objects that include both
+/// the filtered data and metadata about the query execution, providing transparency
+/// and debugging capabilities.
 /// </para>
 /// </remarks>
 /// <example>
@@ -28,10 +34,26 @@ namespace QueryCraft.Adapters.Adapters;
 /// {
 ///     var filterGroup = new FilterGroup&lt;User&gt;
 ///     {
-///         Filters = new[] { new Filter&lt;User&gt;(u => u.Age > 18) }
+///         Condition = FilterCondition.And,
+///         Queries = new List&lt;FilterQuery&lt;User&gt;&gt;
+///         {
+///             new FilterQuery&lt;User&gt;
+///             {
+///                 Query = new FilterCriteria&lt;int&gt;(new[] { 18 }, FilterOperator.GREATER_THAN, "Age"),
+///                 Condition = FilterCondition.And
+///             }
+///         },
+///         PaginationQuery = new PaginationQuery { PageSize = 10, PageNumber = 1 }
 ///     };
 ///     
-///     var results = await adapter.ApplyFilterAsync(filterGroup, cancellationToken);
+///     var queryResult = await adapter.ApplyFilterAsync(filterGroup, cancellationToken);
+///     
+///     // Access the filtered data
+///     var users = queryResult.Result.Data;
+///     
+///     // Access query metadata
+///     var executedQuery = queryResult.Metadata.QueryString;
+///     var totalCount = queryResult.Result.TotalCount;
 /// }
 /// </code>
 /// </example>
@@ -136,18 +158,20 @@ public interface IDataSourceAdapter
     /// if (adapter.CanHandle&lt;User&gt;())
     /// {
     ///     // Safe to proceed with User operations
-    ///     var results = await adapter.ApplyFilterAsync&lt;User&gt;(filterGroup);
+    ///     var queryResult = await adapter.ApplyFilterAsync&lt;User&gt;(filterGroup);
     /// }
     /// </code>
     /// </example>
     bool CanHandle<T>();
     
     /// <summary>
-    /// Asynchronously applies a single filter group to the data source and returns the filtered results.
+    /// Asynchronously applies a single filter group to the data source and returns the filtered results
+    /// with query metadata and optional pagination.
     /// </summary>
     /// <typeparam name="T">The type of objects to filter and return.</typeparam>
     /// <param name="queries">
-    /// The filter group containing one or more filter criteria to apply to the data source.
+    /// The filter group containing one or more filter queries to apply to the data source,
+    /// with optional pagination configuration.
     /// </param>
     /// <param name="cancellationToken">
     /// A cancellation token that can be used to cancel the asynchronous operation.
@@ -155,14 +179,19 @@ public interface IDataSourceAdapter
     /// </param>
     /// <returns>
     /// A task that represents the asynchronous filtering operation.
-    /// The task result contains an enumerable collection of objects of type <typeparamref name="T"/>
-    /// that match the specified filter criteria.
+    /// The task result contains a <see cref="QueryResult{T}"/> with both the filtered data
+    /// and metadata about the query execution.
     /// </returns>
     /// <remarks>
     /// <para>
-    /// This method applies all filters within the provided <paramref name="queries"/> group
-    /// using the logical operators specified in the filter group configuration.
+    /// This method applies all filter queries within the provided <paramref name="queries"/> group
+    /// using the logical conditions specified in each query and the group's overall condition.
     /// The implementation should respect the filter group's combination logic (AND/OR operations).
+    /// </para>
+    /// <para>
+    /// If pagination is specified in the filter group, it will be applied after filtering
+    /// to limit the result set. The total count of matching records (before pagination)
+    /// should be included in the result metadata.
     /// </para>
     /// <para>
     /// The method is designed for scenarios where a single set of related filter criteria
@@ -186,38 +215,56 @@ public interface IDataSourceAdapter
     /// </exception>
     /// <example>
     /// <code>
-    /// // Create a filter group for users over 18
+    /// // Create a filter group for active users over 18 with pagination
     /// var filterGroup = new FilterGroup&lt;User&gt;
     /// {
-    ///     LogicalOperator = LogicalOperator.And,
-    ///     Filters = new[]
+    ///     Condition = FilterCondition.And,
+    ///     Queries = new List&lt;FilterQuery&lt;User&gt;&gt;
     ///     {
-    ///         new Filter&lt;User&gt;(u => u.Age > 18),
-    ///         new Filter&lt;User&gt;(u => u.IsActive == true)
-    ///     }
+    ///         new FilterQuery&lt;User&gt;
+    ///         {
+    ///             Query = new FilterCriteria&lt;int&gt;(new[] { 18 }, FilterOperator.GREATER_THAN, "Age"),
+    ///             Condition = FilterCondition.And
+    ///         },
+    ///         new FilterQuery&lt;User&gt;
+    ///         {
+    ///             Query = new FilterCriteria&lt;bool&gt;(new[] { true }, FilterOperator.EQUALS, "IsActive"),
+    ///             Condition = FilterCondition.And
+    ///         }
+    ///     },
+    ///     PaginationQuery = new PaginationQuery { PageSize = 10, PageNumber = 1 }
     /// };
     /// 
     /// // Apply the filter
-    /// var results = await adapter.ApplyFilterAsync(filterGroup, cancellationToken);
+    /// var queryResult = await adapter.ApplyFilterAsync(filterGroup, cancellationToken);
     /// 
-    /// foreach (var user in results)
+    /// // Access the results
+    /// var users = queryResult.Result.Data;
+    /// var totalCount = queryResult.Result.TotalCount;
+    /// var executedQuery = queryResult.Metadata.QueryString;
+    /// 
+    /// Console.WriteLine($"Found {totalCount} total users, showing page 1 of {Math.Ceiling((double)totalCount / 10)}");
+    /// Console.WriteLine($"Executed query: {executedQuery}");
+    /// 
+    /// foreach (var user in users)
     /// {
     ///     Console.WriteLine($"User: {user.Name}, Age: {user.Age}");
     /// }
     /// </code>
     /// </example>
-    Task<IEnumerable<T>> ApplyFilterAsync<T>(
+    Task<QueryResult<T>> ApplyFilterAsync<T>(
         FilterGroup<T> queries,
         CancellationToken cancellationToken = default);
     
     /// <summary>
     /// Asynchronously applies multiple filter groups to the data source with complex logical operations
-    /// and returns the combined filtered results.
+    /// and returns the combined filtered results with query metadata and optional pagination.
     /// </summary>
     /// <typeparam name="T">The type of objects to filter and return.</typeparam>
     /// <param name="filterGroups">
-    /// A list of filter groups, each containing multiple filter criteria.
+    /// A list of filter groups, each containing multiple filter queries.
     /// The groups are combined using logical operators to create complex query conditions.
+    /// Pagination, if specified, should be consistent across all groups.
     /// </param>
     /// <param name="cancellationToken">
     /// A cancellation token that can be used to cancel the asynchronous operation.
@@ -225,19 +272,23 @@ public interface IDataSourceAdapter
     /// </param>
     /// <returns>
     /// A task that represents the asynchronous filtering operation.
-    /// The task result contains an enumerable collection of objects of type <typeparamref name="T"/>
-    /// that match the combined filter criteria from all filter groups.
+    /// The task result contains a <see cref="QueryResult{T}"/> with both the combined filtered data
+    /// and metadata about the query execution.
     /// </returns>
     /// <remarks>
     /// <para>
     /// This method is designed for complex filtering scenarios where multiple independent
     /// filter groups need to be combined with logical operators (AND/OR) between groups.
-    /// Each filter group is processed according to its internal logical operator configuration,
+    /// Each filter group is processed according to its internal condition configuration,
     /// and then the results are combined based on the inter-group relationships.
     /// </para>
     /// <para>
     /// The method provides more flexibility than <see cref="ApplyFilterAsync{T}(FilterGroup{T}, CancellationToken)"/>
     /// by allowing complex query structures such as: (Group1 AND Group2) OR (Group3 AND Group4).
+    /// </para>
+    /// <para>
+    /// If any filter group specifies pagination, the pagination parameters should be consistent
+    /// across all groups. The implementation should apply pagination to the final combined result set.
     /// </para>
     /// <para>
     /// Implementations should optimize the query execution by leveraging the underlying
@@ -249,7 +300,8 @@ public interface IDataSourceAdapter
     /// Thrown when <paramref name="filterGroups"/> is null.
     /// </exception>
     /// <exception cref="System.ArgumentException">
-    /// Thrown when <paramref name="filterGroups"/> is empty or contains null elements.
+    /// Thrown when <paramref name="filterGroups"/> is empty, contains null elements,
+    /// or has inconsistent pagination parameters across groups.
     /// </exception>
     /// <exception cref="System.NotSupportedException">
     /// Thrown when the adapter cannot handle type <typeparamref name="T"/> or
@@ -260,38 +312,63 @@ public interface IDataSourceAdapter
     /// </exception>
     /// <example>
     /// <code>
-    /// // Create multiple filter groups for complex querying
+    /// // Create multiple filter groups for complex querying with pagination
     /// var filterGroups = new List&lt;FilterGroup&lt;User&gt;&gt;
     /// {
     ///     // Group 1: Active adult users
     ///     new FilterGroup&lt;User&gt;
     ///     {
-    ///         LogicalOperator = LogicalOperator.And,
-    ///         Filters = new[]
+    ///         Condition = FilterCondition.And,
+    ///         Queries = new List&lt;FilterQuery&lt;User&gt;&gt;
     ///         {
-    ///             new Filter&lt;User&gt;(u => u.Age >= 18),
-    ///             new Filter&lt;User&gt;(u => u.IsActive == true)
-    ///         }
+    ///             new FilterQuery&lt;User&gt;
+    ///             {
+    ///                 Query = new FilterCriteria&lt;int&gt;(new[] { 18 }, FilterOperator.GREATER_THAN_OR_EQUAL, "Age"),
+    ///                 Condition = FilterCondition.And
+    ///             },
+    ///             new FilterQuery&lt;User&gt;
+    ///             {
+    ///                 Query = new FilterCriteria&lt;bool&gt;(new[] { true }, FilterOperator.EQUALS, "IsActive"),
+    ///                 Condition = FilterCondition.And
+    ///             }
+    ///         },
+    ///         PaginationQuery = new PaginationQuery { PageSize = 20, PageNumber = 1 }
     ///     },
     ///     // Group 2: VIP users regardless of age
     ///     new FilterGroup&lt;User&gt;
     ///     {
-    ///         LogicalOperator = LogicalOperator.And,
-    ///         Filters = new[]
+    ///         Condition = FilterCondition.And,
+    ///         Queries = new List&lt;FilterQuery&lt;User&gt;&gt;
     ///         {
-    ///             new Filter&lt;User&gt;(u => u.IsVip == true),
-    ///             new Filter&lt;User&gt;(u => u.IsActive == true)
-    ///         }
+    ///             new FilterQuery&lt;User&gt;
+    ///             {
+    ///                 Query = new FilterCriteria&lt;bool&gt;(new[] { true }, FilterOperator.EQUALS, "IsVip"),
+    ///                 Condition = FilterCondition.And
+    ///             },
+    ///             new FilterQuery&lt;User&gt;
+    ///             {
+    ///                 Query = new FilterCriteria&lt;bool&gt;(new[] { true }, FilterOperator.EQUALS, "IsActive"),
+    ///                 Condition = FilterCondition.And
+    ///             }
+    ///         },
+    ///         PaginationQuery = new PaginationQuery { PageSize = 20, PageNumber = 1 }
     ///     }
     /// };
     /// 
     /// // Apply multiple filter groups (results will be: Group1 OR Group2)
-    /// var results = await adapter.ApplyFiltersAsync(filterGroups, cancellationToken);
+    /// var queryResult = await adapter.ApplyFiltersAsync(filterGroups, cancellationToken);
     /// 
-    /// Console.WriteLine($"Found {results.Count()} users matching the criteria");
+    /// // Access the results
+    /// var users = queryResult.Result.Data;
+    /// var totalCount = queryResult.Result.TotalCount;
+    /// var executedQuery = queryResult.Metadata.QueryString;
+    /// 
+    /// Console.WriteLine($"Found {totalCount} total users matching complex criteria");
+    /// Console.WriteLine($"Executed query: {executedQuery}");
+    /// Console.WriteLine($"Showing {users.Count()} users on current page");
     /// </code>
     /// </example>
-    Task<IEnumerable<T>> ApplyFiltersAsync<T>(
+    Task<QueryResult<T>> ApplyFiltersAsync<T>(
         List<FilterGroup<T>> filterGroups,
         CancellationToken cancellationToken = default);
 }

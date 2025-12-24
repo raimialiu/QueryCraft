@@ -17,14 +17,14 @@ public class EfCoreDataSourceAdapters<T>(
         throw new NotImplementedException();
     }
 
-    public override Task<IEnumerable<T>> ApplyFilterAsync<T>(
+    public override Task<QueryResult<T>> ApplyFilterAsync<T>(
         FilterGroup<T> queries, 
         CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
-    public override Task<IEnumerable<T>> ApplyFiltersAsync<T>(
+    public override Task<QueryResult<T>> ApplyFiltersAsync<T>(
         List<FilterGroup<T>> filterGroups, 
         CancellationToken cancellationToken = default)
     {

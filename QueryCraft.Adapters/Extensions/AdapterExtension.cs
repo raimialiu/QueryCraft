@@ -6,12 +6,8 @@ namespace QueryCraft.Adapters.Extensions;
 
 public static class AdapterExtension
 {
-    public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> queryable, FilterCretia criteria) where T : class
+    public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> queryable, FilterGroup<T> query) where T : class
     {
-        var dataAdapter = new EfCoreDataSourceAdapters(new DataSource<T>()
-        {
-            QueryableSource =  queryable,
-            FriendlyName = AdapterNames.EfCoreDataSource
-        });
+       
     }
 }

@@ -10,21 +10,29 @@ public class InMemoryDataSourceAdapter<T>(
 {
     public override string AdapterName => AdapterNames.EfCoreDataSource;
 
-    public override bool CanHandle<T1>()
+    public override bool CanHandle<T>()
     {
-        throw new NotImplementedException();
+        if (dataSource == null) 
+            return false;
+        
+        var dataSourceType = dataSource.GetType();
+        return SupportedTypes.Any(supportedType => 
+            supportedType.IsAssignableFrom(dataSourceType) ||
+            (supportedType.IsGenericTypeDefinition && 
+             dataSourceType.IsGenericType &&
+             supportedType == dataSourceType.GetGenericTypeDefinition()));
     }
 
-    public override Task<IEnumerable<T1>> ApplyFilterAsync<T1>(
-            FilterGroup<T1> queries, 
+    public override Task<QueryResult<T>> ApplyFilterAsync<T>(
+            FilterGroup<T> queries, 
             CancellationToken cancellationToken = default
         )
     {
         throw new NotImplementedException();
     }
 
-    public override Task<IEnumerable<T1>> ApplyFiltersAsync<T1>(
-            List<FilterGroup<T1>> filterGroups, 
+    public override Task<QueryResult<T>> ApplyFiltersAsync<T>(
+            List<FilterGroup<T>> filterGroups, 
             CancellationToken cancellationToken = default
         )
     {
