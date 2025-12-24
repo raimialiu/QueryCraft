@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Csv\" />
+      <Folder Include="Json\" />
+      <Folder Include="Linq\" />
+      <Folder Include="Natural\" />
+      <Folder Include="Sql\" />
+    </ItemGroup>
+
+</Project>

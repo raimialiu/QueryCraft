@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a2add2-a3b2-4eb2-b806-a231d9dbefc4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/BaseDataSourceAdapter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Common/Constants/AdapterNames.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/EfCore/EfCoreDataSourceAdapters.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Extensions/AdapterExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/IDataSourceAdapter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Json/JsonDataSourceAdapter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Memory/InMemoryDataSourceAdapter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.Adapters/Models/DataSource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QueryCraft.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QueryCraft.sln" beforeDir="false" afterPath="$PROJECT_DIR$/QueryCraft.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +19,23 @@
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/BaseDataSourceAdapter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Class1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Common/Constants/AdapterNames.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Common/Enums/FilterCondition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Common/Enums/FilterOperator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/EfCore/EfCoreDataSourceAdapters.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Extensions/AdapterExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/IDataSourceAdapter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Json/JsonDataSourceAdapter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Memory/InMemoryDataSourceAdapter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/DataSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterColumn.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterGroup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/FilterQuery.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Adapters/Models/QueryResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Configurations/Class1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/QueryCraft.Core/Class1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Fluent/Class1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Formatters/Class1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QueryCraft.Parsing/Class1.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -53,6 +54,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main"
   }
@@ -64,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766576040777</updated>
-      <workItem from="1766576041783" duration="4667000" />
+      <workItem from="1766576041783" duration="8368000" />
     </task>
     <servers />
   </component>
